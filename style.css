@@ -2,7 +2,7 @@ body {
     background-color: #448888;
     display: grid;
     grid-template-rows: 100px 1fr;
-    grid-template-columns: minmax(800px, 1500px);
+    grid-template-columns: minmax(800px, 1300px);
     align-content: center;
     justify-content: center;
     width: 100vw;
