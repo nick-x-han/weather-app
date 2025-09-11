@@ -2,11 +2,11 @@ body {
     background-color: #448888;
     display: grid;
     grid-template-rows: 100px 1fr;
-    grid-template-columns: minmax(800px, 1300px);
+    grid-template-columns: minmax(600px, 1000px);
     align-content: center;
     justify-content: center;
     width: 100vw;
-    height: 100vh;
+    height: 100%;
     margin: 0;
 }
 
@@ -20,13 +20,18 @@ header {
     align-items: center;
 }
 
+#location {
+    font-size: 24px;
+    padding: 8px;
+}
+
 #content {
     display: grid;
     resize: both;
     grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
     justify-items: center;
     align-content: start;
-    row-gap: 50px;
+    row-gap: 32px;
 }
 .display {
     height: 300px;
