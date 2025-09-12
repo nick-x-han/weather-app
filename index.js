@@ -1,14 +1,11 @@
-import weatherHandler from "./handler.js";
+import init from "./display.js";
 
-const displays = document.querySelectorAll(".display");
-console.log(displays);
 
-const locationForm = document.querySelector("form#locationForm");
-const searchbar = document.querySelector("#search");
+//ok so how the other guy did is that he hardcoded the display objects and then had a whole file where he searched them by id, then updated everything and then exported such a function. 
+//he also used index.js solely as entry point + calling appController's init() function (its only function), and appcontroller also handles buttons, form submit event, and unit change (good idea). instead of his hardcoded method, we could use an init() that adds those programatically 
 
-locationForm.addEventListener("submit", (e) => {
-    e.preventDefault();
-    const location = searchbar.value;
-    weatherHandler.makeWeatherQuery(location);
-})
+async function run() {
+    await init();
+}
 
+run();
