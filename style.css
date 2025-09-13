@@ -94,3 +94,10 @@ header {
 #locationFormButton:hover {
     background-color: yellow;
 }
+
+#weather-gif {
+    background-repeat: no-repeat;
+    background-position: center;
+    background-color: none;
+    background-size: cover;
+}

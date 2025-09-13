@@ -22,7 +22,7 @@ const weatherHandler = (() => {
         throw new Error('Could not fetch weather data from any location');
     }
     function getCurrentConditionFieldNames() {
-        const fields = ["temp", "feelslike", "datetime", "conditions", "source"];
+        const fields = ["temp", "feelslike", "datetime", "conditions", "source", "icon"];
         return fields;
     }
     function getOtherFieldNames() {

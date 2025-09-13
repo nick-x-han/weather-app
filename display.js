@@ -50,10 +50,24 @@ function changeLocationDisplay(locationName, latitude, longitude) {
     locationDisplay.textContent = `${locationName} (${latitude}°, ${longitude}°)`;
 }
 
+async function setWeatherGif(condition) {
+    const gifDisplay = document.getElementById("weather-gif");
+    let url = `https://api.giphy.com/v1/gifs/translate?api_key=dSQ5JGT1YBzHMzG4YwAaMcbxoJzuJrWR&s=${condition}`
+    try {
+        let response = await fetch(url);
+        let json = await response.json();
+        gifDisplay.style.backgroundImage = `url(${json.data.images.original.url}`;
+    } catch (error) {
+        alert("Invalid URL");
+    }
+
+}
+
+const displayFieldDict = {"temp": "temperature", "feelslike": "Feels Like", "datetime": "time", "conditions": "conditions", "source": "source"};
+
 export function initiateDisplay() {
-    const fieldNames = weatherHandler.getCurrentConditionFieldNames();
-    for (let fieldName of fieldNames) {
-        const displaySquare = new DisplaySquare(fieldName);
+    for (let fieldName in displayFieldDict) {
+        const displaySquare = new DisplaySquare(displayFieldDict[fieldName]);
         displaySquare.initiate();
     }
 }
@@ -67,13 +81,16 @@ export async function updateDisplay(locationName, unitGroup) {
     const data = processJSON(json);
     changeLocationDisplay(resolvedAddress, data["latitude"], data["longitude"]);
     
-    for (let field in data) {
-        const display = DisplaySquare.displaySquareDict[field];
-        
+    for (let field in displayFieldDict) {
+        const displayKey = displayFieldDict[field];
+        const display = DisplaySquare.displaySquareDict[displayKey];
+
         if (display) {
             display.updateValue(data[field]);
         }
     }
+
+    setWeatherGif(data["icon"]);
 
     return resolvedAddress;
 }
