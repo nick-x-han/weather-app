@@ -45,16 +45,23 @@ function processJSON(json) {
     return processedObject;
 }
 
+function changeLocationDisplay(locationName, latitude, longitude) {
+    const locationDisplay = document.querySelector("#location");
+    locationDisplay.textContent = `${locationName} (${latitude}°, ${longitude}°)`;
+}
+
 export function initiateDisplay() {
     const fieldNames = weatherHandler.getCurrentConditionFieldNames();
     for (let fieldName of fieldNames) {
-        const displaySquare = new DisplaySquare(fieldName);
+        const displaySquare = new DisplaySquare(fieldName.toUpperCase());
         displaySquare.initiate();
     }
 }
-export async function updateDisplay(locationName) {
-    const json = await weatherHandler.makeWeatherQuery(locationName);
+
+export async function updateDisplay(locationName, unitGroup) {
+    const json = await weatherHandler.makeWeatherQuery(locationName, unitGroup);
     const data = processJSON(json);
+    changeLocationDisplay(locationName, data["latitude"], data["longitude"]);
     console.log(data);
 }
 

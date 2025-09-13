@@ -33,6 +33,18 @@ header {
     align-content: start;
     row-gap: 32px;
 }
+
+#search {
+    appearance: none;
+    font-size: 24px;
+    border-radius: 2em;
+    padding: 8px 1em;
+}
+
+#search:focus {
+    border: 3px solid yellow;
+}
+
 .display {
     height: 300px;
     width: 300px;
@@ -46,21 +58,19 @@ header {
     border: red 5px dotted;
 }
 
-#search {
-    appearance: none;
-    font-size: 24px;
-    border-radius: 2em;
-    padding: 8px 1em;
-}
-
-#search:focus {
-    border: 3px solid yellow;
-}
-
 .field-name {
-
+    text-align: center;
+    font-size: 24px;
+    
 }
 
 .field-value {
-    
+    text-align: center;
+    margin-top: 1em;
+}
+
+#location {
+    text-transform: capitalize;
+    background-color: #648888;
+    text-align: center;
 }
