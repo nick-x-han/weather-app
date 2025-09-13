@@ -59,10 +59,14 @@ export function initiateDisplay() {
 }
 
 export async function updateDisplay(locationName, unitGroup) {
+    if (!locationName) {
+        locationName = "london";
+    }
     const json = await weatherHandler.makeWeatherQuery(locationName, unitGroup);
+    const resolvedAddress = json["resolvedAddress"];
     const data = processJSON(json);
-    changeLocationDisplay(locationName, data["latitude"], data["longitude"]);
-    console.log(data);
+    changeLocationDisplay(resolvedAddress, data["latitude"], data["longitude"]);
+    
     for (let field in data) {
         const display = DisplaySquare.displaySquareDict[field];
         
@@ -70,5 +74,7 @@ export async function updateDisplay(locationName, unitGroup) {
             display.updateValue(data[field]);
         }
     }
+
+    return resolvedAddress;
 }
 

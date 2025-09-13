@@ -15,8 +15,7 @@ export default async function init() {
         locationForm.addEventListener("submit", (e) => {
             e.preventDefault();
             const location = searchbar.value;
-            currentLocation = location;
-            updateDisplay(currentLocation, getUnitGroup());
+            currentLocation = updateDisplay(location, getUnitGroup());
         })
     }
 
