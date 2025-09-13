@@ -34,7 +34,6 @@ class DisplaySquare {
 }
 
 function processJSON(json) {
-    console.log(json);
     let processedObject = {};
     for (const field of weatherHandler.getCurrentConditionFieldNames()) {
         processedObject[field] = json.currentConditions[field];
