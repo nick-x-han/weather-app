@@ -1,7 +1,7 @@
 import weatherHandler from "./handler.js";
 
 class DisplaySquare {
-    static displaySquareList = [];
+    static displaySquareDict = {};
     contentDiv = document.querySelector("#content");
 
     constructor(fieldNameText) {
@@ -15,7 +15,7 @@ class DisplaySquare {
         this.fieldValue.classList.add("field-value");
 
         this.display.append(this.fieldName, this.fieldValue);
-        DisplaySquare.displaySquareList.push(this);
+        DisplaySquare.displaySquareDict[fieldNameText] = this;
     }
 
     updateValue(value) {
@@ -53,7 +53,7 @@ function changeLocationDisplay(locationName, latitude, longitude) {
 export function initiateDisplay() {
     const fieldNames = weatherHandler.getCurrentConditionFieldNames();
     for (let fieldName of fieldNames) {
-        const displaySquare = new DisplaySquare(fieldName.toUpperCase());
+        const displaySquare = new DisplaySquare(fieldName);
         displaySquare.initiate();
     }
 }
@@ -63,5 +63,12 @@ export async function updateDisplay(locationName, unitGroup) {
     const data = processJSON(json);
     changeLocationDisplay(locationName, data["latitude"], data["longitude"]);
     console.log(data);
+    for (let field in data) {
+        const display = DisplaySquare.displaySquareDict[field];
+        
+        if (display) {
+            display.updateValue(data[field]);
+        }
+    }
 }
 
