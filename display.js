@@ -1,21 +1,11 @@
 import weatherHandler from "./handler.js";
 
-export default function updateDisplay(locationName) {
-    //programmatically create display squares
-    function generateDisplaySquare() {
-        const display = document.createElement("div");
-        display.classList.add("display");
-
-        const fieldName = document.createElement("div");
-        fieldName.classList.add("field-name");
-
-        const fieldValue = document.createElement("div");
-        fieldValue.classList.add("field-value");
-
-        display.append(fieldName, fieldValue);
-        return display;
+class DisplaySquare {
+    constructor() {
+        
     }
-
+}
+export default async function updateDisplay(locationName) {
     function processJSON(json) {
         console.log(json);
         let processedObject = {};
@@ -27,5 +17,8 @@ export default function updateDisplay(locationName) {
         }
         return processedObject;
     }
+
+    const json = await weatherHandler.makeWeatherQuery(locationName);
+    processJSON(json);
 }
 
