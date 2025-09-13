@@ -1,24 +1,9 @@
-import updateDisplay from "./display.js";
+import { updateDisplay, initiateDisplay } from "./display.js";
 
 export default async function init() {
     const locationForm = document.getElementById("locationForm");
     const searchbar = document.getElementById("search");
     const unitChanger = document.getElementById("unit");
-
-    //programmatically create display squares
-    function generateDisplaySquare() {
-        const display = document.createElement("div");
-        display.classList.add("display");
-
-        const fieldName = document.createElement("div");
-        fieldName.classList.add("field-name");
-
-        const fieldValue = document.createElement("div");
-        fieldValue.classList.add("field-value");
-
-        display.append(fieldName, fieldValue);
-        return display;
-    }
 
     if (locationForm) {
         locationForm.addEventListener("submit", (e) => {
@@ -35,7 +20,7 @@ export default async function init() {
     }
 
     (() => {
-        console.log("DD");
+        initiateDisplay();
     })();
 }
 

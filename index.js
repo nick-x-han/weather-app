@@ -1,4 +1,4 @@
-import init from "./display.js";
+import init from "./controller.js";
 //should be controller but for some reason noerror happens
 
 //ok so how the other guy did is that he hardcoded the display objects and then had a whole file where he searched them by id, then updated everything and then exported such a function. 
